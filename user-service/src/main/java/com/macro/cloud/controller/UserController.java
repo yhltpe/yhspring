@@ -1,12 +1,17 @@
 package com.macro.cloud.controller;
 
+import com.macro.cloud.domain.CommonResult;
+import com.macro.cloud.domain.User;
+import com.macro.cloud.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
- * Created by yehui on 2019/11/28.
+ * Created by macro on 2019/8/29.
  */
 @RestController
 @RequestMapping("/user")
@@ -54,5 +59,4 @@ public class UserController {
         userService.delete(id);
         return new CommonResult("操作成功", 200);
     }
-
 }
