@@ -1,4 +1,4 @@
-#Eureka的常用配置
+#Eureka的常用配置 注册中心服务端
 #eureka:
 #  client: #eureka客户端配置
 #    register-with-eureka: true #是否将自己注册到eureka服务端上去
