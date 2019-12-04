@@ -1,0 +1,24 @@
+#springcloud-learning
+#├── eureka-server -- eureka注册中心
+#├── user-service -- 提供User对象CRUD接口的服务
+#├── hystrix-service -- hystrix服务调用测试服务
+#├── turbine-service -- 聚合收集hystrix实例监控信息的服务
+#└── hystrix-dashboard -- 展示hystrix实例监控信息的仪表盘
+
+
+
+server:
+  port: 8601
+spring:
+  application:
+    name: turbine-service
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+turbine:
+  app-config: hystrix-service #指定需要收集信息的服务名称
+  cluster-name-expression: new String('default') #指定服务所属集群
+  combine-host-port: true #以主机名和端口号来区分服务

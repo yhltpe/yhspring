@@ -1,0 +1,54 @@
+#Feign 简介
+#Spring Cloud OpenFeign 是声明式的服务调用工具，它整合了 Ribbon 和 Hystrix，拥有负载均衡和服务容错功能
+#Feign 是声明式的服务调用工具，我们只需创建一个接口并用注解的方式来配置它，就可以实现对某个服务接口的调用，简化了直接使用 RestTemplate 来调用服务接口的开发量。
+#Feign 具备可插拔的注解支持，同时支持 Feign 注解、JAX-RS 注解及 SpringMvc 注解。当使用 Feign 时，Spring Cloud 集成了 Ribbon 和 Eureka 以提供负载均衡的服务调用及基于 Hystrix 的服务容错保护功能。
+
+#日志打印功能
+#Feign 提供了日志打印功能，我们可以通过配置来调整日志级别，从而了解 Feign 中 Http 请求的细节。
+#日志级别
+  #NONE：默认的，不显示任何日志；
+  #BASIC：仅记录请求方法、URL、响应状态码及执行时间；
+  #HEADERS：除了 BASIC 中定义的信息之外，还有请求和响应的头信息；
+  #FULL：除了 HEADERS 中定义的信息之外，还有请求和响应的正文及元数据。
+
+#Feign 的常用配置
+#feign:
+#  hystrix:
+#    enabled: true #在Feign中开启Hystrix
+#  compression:
+#    request:
+#      enabled: false #是否对请求进行GZIP压缩
+#      mime-types: text/xml,application/xml,application/json #指定压缩的请求数据类型
+#      min-request-size: 2048 #超过该大小的请求会被压缩
+#    response:
+#      enabled: false #是否对响应进行GZIP压缩
+#logging:
+#  level: #修改日志级别
+#    com.macro.cloud.service.UserService: debug
+
+#在 Feign 中配置 Ribbon 可以直接使用 Ribbon 的配置
+#在 Feign 中配置 Hystrix 可以直接使用 Hystrix 的配置
+
+#使用到的模块
+#springcloud-learning
+#├── eureka-server -- eureka注册中心
+#├── user-service -- 提供User对象CRUD接口的服务
+#└── feign-service -- feign服务调用测试服务
+
+server:
+  port: 8701
+spring:
+  application:
+    name: feign-service
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+feign:
+  hystrix:
+    enabled: true #在Feign中开启Hystrix
+logging:
+  level:
+    com.macro.cloud.service.UserServiceFeign: debug
